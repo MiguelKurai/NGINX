@@ -1,8 +1,8 @@
 # NGINX
 
-- [Introducción](introducción)
+- [Introducción](introducción.md)
 
-- [Comparativa con Apache]()
+- [Comparativa con Apache](diferencias.md)
 
 - [Instalación]()
 
