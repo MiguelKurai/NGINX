@@ -15,7 +15,7 @@ Con Nginx, un proceso maestro puede controlar múltiples procesos de trabajo. El
 
 1. [Comparativa con Apache](diferencias.md)
 
-2. [Instalación]()
+2. [Instalación](instalacion.md)
 
 3. [Casos Prácticos]()
 
