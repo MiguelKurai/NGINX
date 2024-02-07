@@ -17,7 +17,5 @@ Con Nginx, un proceso maestro puede controlar múltiples procesos de trabajo. El
 
 2. [Instalación](instalacion.md)
 
-3. [Casos Prácticos]()
-
-4. Referencias
+3. Referencias
   * [Kinsta](https://kinsta.com/es/base-de-conocimiento/que-es-nginx/)
