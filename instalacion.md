@@ -2,7 +2,7 @@
 
 Para instalar Nginx necesitaremos dos máquinas; la primera para hacer de servidor principal, y la segunda para el balanceo de cargas.
 
-* Instalación de paquetes
+## Paso 1: Instalación de paquetes
 
 Primero, debemos actualizar los paquetes de nuestros servidores
 ```bash
@@ -25,14 +25,24 @@ Para comprobar si nuestro servidor está enfuncionamiento usaremos el siguiente 
 ```bash
 sudo systemctl status nginx
 ```
-* Configuración del servidor
+## Paso 2: Configuración del servidor
 
-Para comprobar el funcionamiento de nuestro servidor, eliminaremos el fichero index predeterminado para para crear uno nuevo con un texto de prueba
+Lo primero será editar el fichero /etc/nginx/nginx.conf:
+```bash
+server {
+    listen       80 default_server;
+    listen       [::]:80 default_server;
+    server_name  _;
+    root         /usr/share/nginx/html;
+}
+```
+
+Para comprobar el correcto funcionamiento de nuestro servidor, eliminaremos el fichero index predeterminado para para crear uno nuevo con un texto de prueba(puede realizarle una copia previamente).
 ```bash
 sudo rm -rf /var/www/html/index*
 ```
 
-Ahora crearemos uno nuevo para añadirle nuestro propio texto
+Ahora crearemos uno nuevo para añadirle nuestro propio texto.
 ```bash
 sudo nano /var/www/html/index.html
 ```
@@ -51,7 +61,7 @@ Mensaje de prueba
 A continuación, configuramos nuestro sitio web en ambos servidores
 
 ```bash
-sudo nano /etc/nginx/conf.d/balancing.conf
+sudo nano /etc/nginx/sites-available/default
 ```
 
 Le introducimos la siguiente configuración
@@ -76,4 +86,16 @@ server {
 }
 ```
 
-* 
+Por último, le permitiremos el tráfico HTTPS en el firewall con los siguientes comandos:
+
+```bash
+sudo ufw allow 'Nginx Full'
+sudo ufw delete allow 'Nginx HTTP'
+```
+
+## Paso 3: Configuración del localhost
+
+Ahora configuraremos nuestro fichero /etc/hosts para añadirle nuestro servidor como localhost y ya prodremos acceder a nuestro servidor desde dentro y desde fuera.
+```bash
+127.0.0.1 mkurai.ddns.net
+```
